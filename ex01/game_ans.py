@@ -1,8 +1,8 @@
 import random
 import time
-moijsu = 10#対象文字数
-kesson = 2#欠損文字数
-playtime = 2#最大繰り返し回数
+moijsu = 10 #対象文字数
+kesson = 2 #欠損文字数
+playtime = 2 #最大繰り返し回数
 
 def shutudai(alphabet):
     all_chars = random.sample(alphabet,moijsu)
@@ -12,15 +12,15 @@ def shutudai(alphabet):
     print()
 
     abs_chars = random.sample(all_chars,kesson)
-    print("欠損文字（デバッグ用）")
-    for c in abs_chars:
-        print(c, end=" ")
-    print()
+    #print("欠損文字（デバッグ用）")
+    #for c in abs_chars:
+    #    print(c, end = " ")
+    #print()
 
     print("表示文字")
     for c in all_chars:
         if c not in abs_chars:
-            print(c,end= " ")
+            print(c,end = " ")
     print()
     return abs_chars
 
@@ -31,7 +31,7 @@ def kaitou(abs_char):
     else:
         print("正解です。それでは、具体的に欠損文字を1つずつ入力してください")
         for i in range(num):
-            ans = input(f"{i+1}1つ目の文字を入力してください:")
+            ans = input(f"{i + 1}1つ目の文字を入力してください:")
             if ans not in abs_char:
                 print("不正解です")
                 return False
@@ -49,8 +49,12 @@ if __name__ == "__main__":
         abs_char = shutudai(alphabet)
         ret = kaitou(abs_char)
         if ret:
+            
             break
+        
         else:
-            print("-"*20)
+
+            print("-" * 20)
+    
     ed = time.time()
     print(f"所要時間:{(ed-st):.2f}秒")
