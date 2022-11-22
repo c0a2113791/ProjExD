@@ -4,7 +4,7 @@ moijsu = 10 #対象文字数
 kesson = 2 #欠損文字数
 playtime = 2 #最大繰り返し回数
 
-def shutudai(alphabet):
+def shutudai(alphabet):#出題するアルファベット10文字、欠損後の文字を表示する
     all_chars = random.sample(alphabet,moijsu)
     print("対象文字:")
     for c in all_chars:
@@ -24,7 +24,7 @@ def shutudai(alphabet):
     print()
     return abs_chars
 
-def kaitou(abs_char):
+def kaitou(abs_char):#回答の正解、不正解を判定する。
     num = int(input("欠損文字はいくつあるでしょうか？:"))
     if num != kesson:
         print("不正解です")
@@ -51,7 +51,7 @@ if __name__ == "__main__":
         if ret:
             
             break
-        
+
         else:
 
             print("-" * 20)
