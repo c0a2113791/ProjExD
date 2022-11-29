@@ -73,6 +73,7 @@ for ope in op:
         c = 0
 
 #ボタンの設定
+
 button_ac = tk.Button(root, text="AC",width=4,height=2,font=(" ",30))
 button_ac.grid(row=1 ,column=2)
 button_ac.bind("<1>",click_ac)
