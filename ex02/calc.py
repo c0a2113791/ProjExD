@@ -39,6 +39,7 @@ root.geometry("400x600")
 entry = tk.Entry(root, justify="right", width=10,font=("",40))
 entry.grid(row=0, column= 0,columnspan=3)
 #2
+
 r,c = 2,0
 for i in range(7,10):
     button = tk.Button(root, text=f"{i}",width=4,height=2,font=(" ",30))
