@@ -91,7 +91,7 @@ button_mul = tk.Button(root, text="*",width=4,height=2,font=(" ",30))
 button_mul.grid(row=3 ,column=3)
 button_mul.bind("<1>",button_click)
 
-button_back = tk.Button(root, text="B",width=4,height=2,font=(" ",30))
+button_back = tk.Button(root, text="C",width=4,height=2,font=(" ",30))
 button_back.grid(row=1 ,column=0)
 button_back.bind("<1>",click_b)
 
