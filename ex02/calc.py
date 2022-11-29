@@ -34,7 +34,7 @@ def click_sqrt(event):
 
 #1
 root = tk.Tk()
-root.geometry("400x600")
+root.geometry("380x600")
 #4
 entry = tk.Entry(root, justify="right", width=10,font=("",40))
 entry.grid(row=0, column= 0,columnspan=3)
