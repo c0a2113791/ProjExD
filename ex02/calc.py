@@ -29,12 +29,9 @@ def click_sqrt(event):
     ans = math.sqrt(int(siki))
     entry.delete(0, tk.END)#表示された文字の削除
     entry.insert(tk.END, ans)
-
-
-
 #1
 root = tk.Tk()
-root.geometry("380x600")
+root.geometry("370x600")
 #4
 entry = tk.Entry(root, justify="right", width=10,font=("",40))
 entry.grid(row=0, column= 0,columnspan=3)
@@ -98,7 +95,6 @@ button_back.bind("<1>",click_b)
 button_sq = tk.Button(root, text="√",width=4,height=2,font=(" ",30))
 button_sq.grid(row=1 ,column=3)
 button_sq.bind("<1>",click_sqrt)
-
 
 root.mainloop()
 
