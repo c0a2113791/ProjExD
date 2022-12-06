@@ -25,7 +25,6 @@ maze_lst = []
 
 def main_proc():
     global mx ,my ,cx ,cy
-    print(key)
     if key == "w":
         my -= 1
 
