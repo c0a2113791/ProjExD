@@ -101,7 +101,7 @@ def main():
                 scrn_sfc.blit(txt,(610,400))
                 pg.display.update()
                 for event in pg.event.get():
-                    if event.key == pg.K_ESCAPE:#エスケープキーを押したら終了
+                    if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:#エスケープキーを押したら終了
                         return
                     if event.type == pg.QUIT:#ウィンドウの「ｘ」が押されたら終了
                         return
