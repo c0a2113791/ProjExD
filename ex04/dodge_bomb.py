@@ -84,7 +84,6 @@ def main():
                 tori2_rct.centerx += 1
             if key_dic [pg.K_d]:
                 tori2_rct.centerx -= 1
-                
         
         scrn_sfc.blit(tori_sfc,tori_rct)
         scrn_sfc.blit(tori2_sfc,tori2_rct)
@@ -108,7 +107,7 @@ def main():
 
         pg.display.update()
         clock.tick(1000)
-    
+        
 if __name__ == "__main__":
     pg.init()
     main()
