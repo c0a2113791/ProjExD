@@ -6,8 +6,8 @@ import sys
 
 main_dir = os.path.split(os.path.abspath(__file__))[0]
 
-
-class Screen:
+#スクリーンの作成
+class Screen: 
     def __init__(self, title, wh, img_path):
         pg.display.set_caption(title) 
         self.sfc = pg.display.set_mode(wh)
@@ -18,9 +18,9 @@ class Screen:
     def blit(self):
         self.sfc.blit(self.bgi_sfc, self.bgi_rct) 
 
-
+#こうかとんの表示
 class Bird:
-    key_delta = {
+    key_delta = { #十字キーを押した際の設定
         pg.K_UP:    [0, -1],
         pg.K_DOWN:  [0, +1],
         pg.K_LEFT:  [-1, 0],
@@ -50,13 +50,14 @@ class Bird:
     def Attak(self):
         return Shot(self)
 
-
+#こうかとんの卵の設定
 class Shot:
     def __init__(self, chr:Bird):
         self.sfc = pg.image.load("fig/pngegg.png")
         self.sfc = pg.transform.rotozoom(self.sfc, 0, 0.1)
         self.rct = self.sfc.get_rect()
         self.rct.center = chr.rct.center
+
     def blit(self, scr:Screen):
         scr.sfc.blit(self.sfc, self.rct)
     
@@ -99,15 +100,17 @@ def check_bound(obj_rct, scr_rct):
         tate = -1
     return yoko, tate
 
-
+# 作成途中
 def load_sound(file):
     """because pygame can be be compiled without mixer."""
     if not pg.mixer:
         return None
+
     file = os.path.join(main_dir, "data", file)
     try:
         sound = pg.mixer.Sound(file)
         return sound
+
     except pg.error:
         print("Warning, unable to load, %s" % file)
     return None
@@ -117,6 +120,7 @@ def main():
     if pg.get_sdl_version()[0] == 2:
         pg.mixer.pre_init(44100, 32, 2, 1024)
     pg.init()
+
     if pg.mixer and not pg.mixer.get_init():
         print("Warning, no sound")
         pg.mixer = None
@@ -130,46 +134,44 @@ def main():
 
     clock =pg.time.Clock()
 
-    # 練習１
+    # スクリーンの描画
     scr = Screen("逃げろ！こうかとん", (1600,900), "fig/pg_bg.jpg")
 
-    # 練習３
+    #こうかとんの描画
     kkt = Bird("fig/6.png", 2.0, (900,400))
     kkt.update(scr)
 
     shots = []
 
-    # 練習５
+    #爆弾の生成
     bkd_lst = []
     color_lst = ["red", "green", "blue", "yellow", "magenta"]
-    for i in range(3):
+    for i in range(3  ) :
         bkd = Bomb(color_lst[i%5], 10, (random.choice(range(-2, 3)), random.choice(range(-2, 3))), scr)
         bkd_lst.append(bkd)
     # bkd.update(scr)
 
-    flag = 0
-
     while True:        
         scr.blit()
 
-        for event in pg.event.get():
+        for event in pg.event.get():    #ゲームを止める際の設定
             if event.type == pg.QUIT:
                 return
-            if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
+            if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:    #spaceを押した際に作動する
                 shots.append(kkt.Attak())
                 
-        for i in range(len(shots)):
+        for i in range(len(shots)):   #生成される卵をリストに入れる
             shots[i].update(scr)
         kkt.update(scr)
         for i in range(len(bkd_lst)):
             bkd_lst[i].update(scr)
-            if kkt.rct.colliderect(bkd_lst[i].rct):
+            if kkt.rct.colliderect(bkd_lst[i].rct):    #爆弾とこうかとんの当たった際の反応
                 return
             
             for j in range(len(shots)):
-                if bkd_lst[i].rct.colliderect(shots[j].rct):
-                    bkd_lst.remove(bkd_lst[i])   
-                
+                if bkd_lst[i].rct.colliderect(shots[j].rct):  #卵と爆弾が当たった際の反応
+                    bkd_lst.remove(bkd_lst[i])   #爆弾リスト[i]番目の爆弾を消去
+            
 
         pg.display.update()
         clock.tick(1000)
